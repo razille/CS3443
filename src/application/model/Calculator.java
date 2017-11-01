@@ -46,6 +46,10 @@ public class Calculator {
 			dot = false;
 		}
 		if (text.length() == 1 && "0123456789".indexOf(text) >= 0) {
+			if (operation.equals("=")) {
+				internalValue = 0;
+				operation = "";
+			}
 			displayString += text;
 			displayValue = Double.valueOf(displayString);
 		} else if (text.equals(".")) {
@@ -65,27 +69,42 @@ public class Calculator {
 				displayValue = internalValue * displayValue;
 			} else if (operation.equals("/")) {
 				displayValue = internalValue / displayValue;
-			} else if( operation.equals("=") ) {
+			} else if (operation.equals("=")) {
 				displayValue = internalValue;
-			} else if( operation.equals("C")) {
-				displayValue = 0;
-				internalValue = 0;
-				displayString = "";
-			} else if ( operation.equals( "x^2" ) ) {
-				displayValue = displayValue * displayValue;
+			} else if (operation.equals("x^2")) {
+				displayValue = internalValue * internalValue;
+			} else if (operation.equals("x^3")) {
+				displayValue = internalValue * internalValue * internalValue;
+			} else if (operation.equals("x!")) {
+				if ( internalValue % 1 != 0 ) {
+					displayString = "Not a number";
+					displayValue = Double.NaN;
+				}
+				else {
+					int i = (int) internalValue;
+					int result = 1;
+					while ( i > 1 ) {
+						result = result * i;
+						i--;
+					}
+					displayValue = (double) result;
+				}
+			} else if (operation.equals("x^2")) {
+				displayValue = internalValue * internalValue;
+			} else if (operation.equals("x^3")) {
+				displayValue = internalValue * internalValue * internalValue;
+			} else if (operation.equals("x^y")) {
+				displayValue = Math.pow(internalValue, displayValue);
+			} else if (operation.equals("1/x")) {
+				displayValue = 1 / internalValue;
+			} else if (operation.equals("10^x")) {
+				displayValue = Math.pow(10, internalValue);
+			} else if(operation.equals("+/-")) {
+				displayValue = -1 * internalValue;
 			}
-//			} else if( operation.equals( "%" ) ) {
-//				displayValue = internalValue / 100;
-//			} else if( operation.equals( "^2" ) ) {
-//				displayValue = internalValue * internalValue;
-//			} else if( operation.equals( "^3" ) ) {
-//				displayValue = internalValue * internalValue * internalValue;
-//			} else if( operation.equals( "C" ) ) {
-//				displayValue = 0;
-//			}
 		    
 			displayString = "" + displayValue;
-			internalValue = displayValue;
+			internalValue = displayValue;		// Display value is stored as internal value 
 			operation = text;
 			start = true;
 		}
