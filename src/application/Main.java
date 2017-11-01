@@ -18,6 +18,7 @@ public class Main extends Application {
 			primaryStage.setScene(new Scene(root, 500, 500));
 			primaryStage.setTitle("CS3443 Calculator");
 			primaryStage.show();
+			primaryStage.setResizable(false);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

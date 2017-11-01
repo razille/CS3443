@@ -60,6 +60,13 @@ public class Calculator {
 				}
 				displayString += ".";
 			}
+		} else if (text.equals("C")) {
+			displayValue = 0;
+			internalValue = 0;
+			operation = "";
+			displayString = "";
+			displayString += "0.0";
+			start = true;
 		} else {
 		    if (operation.equals("+")) {
 				displayValue = internalValue + displayValue;
@@ -71,10 +78,6 @@ public class Calculator {
 				displayValue = internalValue / displayValue;
 			} else if (operation.equals("=")) {
 				displayValue = internalValue;
-			} else if (operation.equals("x^2")) {
-				displayValue = internalValue * internalValue;
-			} else if (operation.equals("x^3")) {
-				displayValue = internalValue * internalValue * internalValue;
 			} else if (operation.equals("x!")) {
 				if ( internalValue % 1 != 0 ) {
 					displayString = "Not a number";
@@ -101,7 +104,7 @@ public class Calculator {
 				displayValue = Math.pow(10, internalValue);
 			} else if(operation.equals("+/-")) {
 				displayValue = -1 * internalValue;
-			}
+			} 
 		    
 			displayString = "" + displayValue;
 			internalValue = displayValue;		// Display value is stored as internal value 
