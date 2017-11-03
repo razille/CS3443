@@ -104,7 +104,9 @@ public class Calculator {
 				displayValue = Math.pow(10, internalValue);
 			} else if(operation.equals("+/-")) {
 				displayValue = -1 * internalValue;
-			} 
+			} else if(operation.equals("%")) {
+				displayValue = internalValue / 100;
+			}
 		    
 			displayString = "" + displayValue;
 			internalValue = displayValue;		// Display value is stored as internal value 
